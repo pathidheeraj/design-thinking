@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanLives | Design Thinking Project 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.4s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(8px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .persona-tab.active {
+            background-color: #0c4a6e;
+            color: #ffffff;
+            border-color: #0c4a6e;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .animate-tab-change {
+            animation: fadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="bg-brand-900 text-white p-2 rounded-xl transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="building-2" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-brand-900 group-hover:text-brand-600 transition-colors duration-300">UrbanLives</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
+                    <a href="#about" class="hover:text-brand-600 transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-600 after:transition-all">About Us</a>
+                    <a href="#ideation" class="hover:text-brand-600 transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-600 after:transition-all">6-3-5 Ideation</a>
+                    <a href="#evaluation" class="hover:text-brand-600 transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-600 after:transition-all">Shortlisted Ideas</a>
+                    <a href="#prototype" class="hover:text-brand-600 transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-600 after:transition-all">Platform Prototype</a>
+                    <a href="#townhall" class="hover:text-brand-600 transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-600 after:transition-all">Town Hall & WoZ</a>
+                    <a href="#reflection" class="hover:text-brand-600 transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-600 after:transition-all">Reflection</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative bg-gradient-to-b from-brand-900 via-slate-900 to-slate-950 text-white py-28 px-4 overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+            <span class="inline-block bg-brand-500/20 text-brand-100 text-xs font-semibold tracking-wider uppercase px-4 py-1.5 rounded-full border border-brand-500/30 shadow-inner animate-pulse-slow">
+                Design Thinking Project 2026
+            </span>
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-brand-100">
+                UrbanLives
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+                Addressing Socio-Economic Stability & Urban Infrastructure Through Empathy & Experience Mapping
+            </p>
+            <div class="pt-4 flex flex-wrap justify-center gap-4">
+                <a href="#prototype" class="bg-brand-500 hover:bg-brand-600 text-white px-7 py-3.5 rounded-xl font-medium shadow-lg hover:shadow-brand-500/20 transition-all duration-300 transform hover:-translate-y-1">
+                    Explore Platform Prototype
+                </a>
+                <a href="#about" class="bg-white/5 hover:bg-white/10 text-white px-7 py-3.5 rounded-xl font-medium border border-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm">
+                    Meet the Team
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-32">
+
+        <section id="about" class="scroll-mt-24 space-y-16 animate-fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+                <div class="space-y-4 lg:col-span-1">
+                    <div class="flex items-center space-x-2 text-brand-600 font-bold uppercase text-xs tracking-wider">
+                        <i data-lucide="info" class="w-4 h-4"></i>
+                        <span>01 . Context & Mission</span>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Problem Area & Motivation</h2>
+                    <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                        We focused on the socio-economic challenges of low-income urban residents because it is a reality right around us—yet rarely receives the attention it deserves. Millions in Indian cities face a daily structural battle for basic civic stability.
+                    </p>
+                </div>
+                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 group hover:border-amber-200 space-y-4">
+                        <div class="p-3 bg-amber-50 text-amber-600 rounded-xl w-fit transition-transform duration-300 group-hover:scale-110">
+                            <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900">The Daily Battles</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Waking up unsure if water will run, if a bus will arrive, or if next month's rent remains affordable after settling sudden utility margins. These structural hurdles consistently erode disposable financial buffers and baseline peace of mind.
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 group hover:border-brand-200 space-y-4">
+                        <div class="p-3 bg-brand-50 text-brand-600 rounded-xl w-fit transition-transform duration-300 group-hover:scale-110">
+                            <i data-lucide="heart" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900">Empathy First</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            We looked beyond pure data arrays to study the human side of urban poverty. By directly engaging with localized workers, our design model is founded on primary, real-world field input.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-slate-200 p-8 md:p-12 shadow-sm space-y-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-full translate-x-10 -translate-y-10 pointer-events-none"></div>
+                <div class="text-center max-w-2xl mx-auto space-y-2 relative z-10">
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">Our Core Innovation Team</h3>
+                    <p class="text-sm text-slate-500">Cross-functional specialists collaborating on algorithmic solutions, field tracking, and user-centric public infrastructure planning.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+                    <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50/60 flex flex-col justify-between hover:bg-white hover:border-brand-500/20 hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-default group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-slate-900 text-base group-hover:text-brand-900 transition-colors">P Dheeraj</h4>
+                                <i data-lucide="shield-check" class="w-4 h-4 text-slate-400 group-hover:text-brand-500 transition-colors"></i>
+                            </div>
+                            <span class="inline-block bg-brand-50 text-brand-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md">Team Leader</span>
+                            <p class="text-xs text-slate-600 leading-relaxed">Passionate about bridging the gap between urban infrastructure frameworks and socio-economic equality.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50/60 flex flex-col justify-between hover:bg-white hover:border-brand-500/20 hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-default group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-slate-900 text-base group-hover:text-brand-900 transition-colors">Srishanth</h4>
+                                <i data-lucide="search" class="w-4 h-4 text-slate-400 group-hover:text-brand-500 transition-colors"></i>
+                            </div>
+                            <span class="inline-block bg-purple-50 text-purple-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md">Research Head</span>
+                            <p class="text-xs text-slate-600 leading-relaxed">Dedicated to mapping ground-level challenges, running interviews, and tracking trends faced by low-income urban residents.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50/60 flex flex-col justify-between hover:bg-white hover:border-brand-500/20 hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-default group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-slate-900 text-base group-hover:text-brand-900 transition-colors">Vamshi</h4>
+                                <i data-lucide="bar-chart-3" class="w-4 h-4 text-slate-400 group-hover:text-brand-500 transition-colors"></i>
+                            </div>
+                            <span class="inline-block bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md">Data Analyst</span>
+                            <p class="text-xs text-slate-600 leading-relaxed">Leverages a data-driven approach to tracking, parsing, and evaluating housing, utility, and metropolitan transport patterns.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50/60 flex flex-col justify-between hover:bg-white hover:border-brand-500/20 hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-default group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-slate-900 text-base group-hover:text-brand-900 transition-colors">Harshith Varma</h4>
+                                <i data-lucide="binary" class="w-4 h-4 text-slate-400 group-hover:text-brand-500 transition-colors"></i>
+                            </div>
+                            <span class="inline-block bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md">Data Analyst</span>
+                            <p class="text-xs text-slate-600 leading-relaxed">Specializes in predictive stability indexing, demographic sorting, and statistical filtering of socioeconomic survey data sets.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50/60 flex flex-col justify-between hover:bg-white hover:border-brand-500/20 hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-default group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-slate-900 text-base group-hover:text-brand-900 transition-colors">Vinay Reddy</h4>
+                                <i data-lucide="palette" class="w-4 h-4 text-slate-400 group-hover:text-brand-500 transition-colors"></i>
+                            </div>
+                            <span class="inline-block bg-amber-50 text-amber-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md">Design Lead</span>
+                            <p class="text-xs text-slate-600 leading-relaxed">Passionate about engineering functional, intuitive digital interfaces for everyday citizens experiencing civic friction.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50/60 flex flex-col justify-between hover:bg-white hover:border-brand-500/20 hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-default group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-slate-900 text-base group-hover:text-brand-900 transition-colors">Akshith</h4>
+                                <i data-lucide="code" class="w-4 h-4 text-slate-400 group-hover:text-brand-500 transition-colors"></i>
+                            </div>
+                            <span class="inline-block bg-blue-50 text-blue-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md">Tech & Development</span>
+                            <p class="text-xs text-slate-600 leading-relaxed">Focused on building clean, practical web tools and data architectures that actively bridge metropolitan infrastructure gaps.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50/60 flex flex-col justify-between hover:bg-white hover:border-brand-500/20 hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-default group md:col-span-2 lg:col-span-1">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-slate-900 text-base group-hover:text-brand-900 transition-colors">Snehansh</h4>
+                                <i data-lucide="megaphone" class="w-4 h-4 text-slate-400 group-hover:text-brand-500 transition-colors"></i>
+                            </div>
+                            <span class="inline-block bg-rose-50 text-rose-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md">Awareness & Outreach</span>
+                            <p class="text-xs text-slate-600 leading-relaxed">Committed to communicating localized insights, raising public awareness, and highlighting needs for inclusionary urban planning layouts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 text-white p-8 rounded-3xl space-y-4 hover:shadow-xl transition-all duration-300 border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center font-bold text-sm shadow-md shadow-brand-500/20">1</div>
+                    <h3 class="text-xl font-bold tracking-tight">Online Landscape Analysis</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Explored historical studies, legal frameworks, and municipal datasets to establish structural baselines regarding regional cost trajectories, utility vulnerabilities, and density thresholds.
+                    </p>
+                </div>
+                <div class="bg-gradient-to-br from-brand-900 via-brand-950 to-brand-900 text-white p-8 rounded-3xl space-y-4 hover:shadow-xl transition-all duration-300 border border-brand-800">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center font-bold text-sm shadow-md shadow-emerald-500/20">2</div>
+                    <h3 class="text-xl font-bold tracking-tight">Fieldwork & Experience Mapping</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Conducted 5 comprehensive direct field interviews with diverse urban stakeholders. Our analysts mapped detailed user journey indices across seven specific lifecycle parameters.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-slate-200">
+
+        <section id="ideation" class="scroll-mt-24 space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <div class="flex items-center justify-center space-x-2 text-brand-600 font-bold uppercase text-xs tracking-wider">
+                    <i data-lucide="lightbulb" class="w-4 h-4"></i>
+                    <span>02 . Ideation Framework</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">6-3-5 Brainwriting Paradigm</h2>
+                <p class="text-slate-600 text-sm md:text-base">
+                    A collaborative innovation matrix designed to maximize individual concept output quietly, removing cognitive biases and preventing singular vocal channels from narrowing development.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-brand-200 transition-colors duration-300">
+                    <span class="block text-3xl font-black text-brand-900 mb-1">6</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">Field Thinkers</span>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-brand-200 transition-colors duration-300">
+                    <span class="block text-3xl font-black text-brand-900 mb-1">3</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">Concepts per 5 min</span>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-brand-200 transition-colors duration-300">
+                    <span class="block text-3xl font-black text-brand-900 mb-1">6</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">Rotational Rounds</span>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-200 transition-colors duration-300">
+                    <span class="block text-3xl font-black text-emerald-600 mb-1">540</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">Total Evaluated Ideas</span>
+                </div>
+            </div>
+
+            <div class="bg-blue-50/70 border border-blue-100 rounded-2xl p-6 md:p-8 text-center max-w-4xl mx-auto shadow-inner relative overflow-hidden">
+                <div class="absolute -bottom-6 -left-6 text-blue-100 pointer-events-none opacity-50"><i data-lucide="quote" class="w-24 h-24"></i></div>
+                <h4 class="text-xs font-bold text-blue-900 uppercase tracking-wider mb-2 relative z-10">Primary Strategic Directive Statement</h4>
+                <p class="text-lg md:text-xl italic font-medium text-brand-900 leading-relaxed relative z-10">
+                    "How might we help low-to-middle income urban residents in India achieve socio-economic stability by improving access to affordable housing, reliable utilities, and efficient public infrastructure?"
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="p-6 md:p-8 bg-slate-950 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold tracking-tight">Primary Field Persona Metrics & Solutions</h3>
+                        <p class="text-xs text-slate-400">Select a real user node to examine isolated parameters and custom brainwriting frameworks.</p>
+                    </div>
+                    <span class="text-[10px] bg-slate-800 border border-slate-700 text-slate-300 font-mono px-2.5 py-1 rounded-md">108 Ideas Generated Per Profile</span>
+                </div>
+                
+                <div class="flex flex-wrap border-b border-slate-200 bg-slate-50 p-2 gap-1.5">
+                    <button onclick="switchPersona('aditya')" id="tab-aditya" class="persona-tab active px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 border border-transparent flex items-center space-x-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>
+                        <span>Aditya Kumar</span>
+                    </button>
+                    <button onclick="switchPersona('aryan')" id="tab-aryan" class="persona-tab px-4 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-200/70 transition-all duration-200 border border-transparent flex items-center space-x-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                        <span>Aryan</span>
+                    </button>
+                    <button onclick="switchPersona('anand')" id="tab-anand" class="persona-tab px-4 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-200/70 transition-all duration-200 border border-transparent flex items-center space-x-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span>Anand</span>
+                    </button>
+                    <button onclick="switchPersona('dheeraj-p')" id="tab-dheeraj-p" class="persona-tab px-4 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-200/70 transition-all duration-200 border border-transparent flex items-center space-x-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                        <span>Dheeraj (Manager)</span>
+                    </button>
+                    <button onclick="switchPersona('ramu')" id="tab-ramu" class="persona-tab px-4 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-200/70 transition-all duration-200 border border-transparent flex items-center space-x-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+                        <span>Ramu</span>
+                    </button>
+                </div>
+
+                <div class="p-6 md:p-8 bg-white min-h-[340px]">
+                    <div id="content-aditya" class="persona-content space-y-6">
+                        <div class="bg-orange-50/40 p-5 rounded-2xl border border-orange-100/60 flex items-start space-x-3">
+                            <i data-lucide="user" class="w-5 h-5 text-orange-500 mt-0.5"></i>
+                            <div>
+                                <span class="text-[10px] font-bold text-orange-600 uppercase tracking-wider block">Target Context Spectrum</span>
+                                <p class="text-sm font-medium text-slate-800 mt-0.5">24-year-old grocery store worker from Bihar earning ₹16,000–18,000/month. Lives in a rented space with notable water leakages; relies heavily on transit networks.</p>
+                            </div>
+                        </div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-600 flex items-center space-x-1.5"><i data-lucide="git-commit" class="w-3.5 h-3.5"></i><span>Targeted Brainwriting Vectors</span></h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Employer salary advance system</strong> Interest-free mid-month borrowing to manage emergencies like rent or medical outlays.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Locality WhatsApp complaint group</strong> Resident-run framework designed to consolidate and accelerate civic problems to municipal bodies.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Subsidised monthly bus passes</strong> Low-tier structural transit passes cutting daily costs for manual or hourly shifts.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Shared co-living housing scheme</strong> 2-3 workers splitting overhead rents inside higher-quality, structurally sound residential models.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors md:col-span-2"><strong class="text-slate-900 block mb-1 text-sm">Free weekend skill development classes</strong> Practical vocational pathways focused on logistics or retail tracking to unlock increased baseline pay.</div>
+                        </div>
+                    </div>
+
+                    <div id="content-aryan" class="persona-content space-y-6 hidden">
+                        <div class="bg-blue-50/40 p-5 rounded-2xl border border-blue-100/60 flex items-start space-x-3">
+                            <i data-lucide="user" class="w-5 h-5 text-blue-500 mt-0.5"></i>
+                            <div>
+                                <span class="text-[10px] font-bold text-blue-600 uppercase tracking-wider block">Target Context Spectrum</span>
+                                <p class="text-sm font-medium text-slate-800 mt-0.5">20-year-old entry professional renting for 2–3 years. Faces recurring transit arrival delays, climbing city premiums, and targets long-term ownership goals.</p>
+                            </div>
+                        </div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-600 flex items-center space-x-1.5"><i data-lucide="git-commit" class="w-3.5 h-3.5"></i><span>Targeted Brainwriting Vectors</span></h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Verified no-broker rental platform</strong> Direct digital mapping environments where property providers and lessees undergo secure verification loops.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Fixed electricity tariff for renters</strong> Structured tariff upper bounds preventing variable cost jumps for temporary dwellers.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Real-time bus tracking app</strong> Live tracking updates reducing transit delay friction for everyday operations.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Renter's rights helpline</strong> Centralized legal advisory interface facilitating expedited parsing of leasing friction points.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors md:col-span-2"><strong class="text-slate-900 block mb-1 text-sm">Affordable co-living near workplaces</strong> Communal tech clusters featuring shared assets and utilities adjacent to key employment centers.</div>
+                        </div>
+                    </div>
+
+                    <div id="content-anand" class="persona-content space-y-6 hidden">
+                        <div class="bg-emerald-50/40 p-5 rounded-2xl border border-emerald-100/60 flex items-start space-x-3">
+                            <i data-lucide="user" class="w-5 h-5 text-emerald-500 mt-0.5"></i>
+                            <div>
+                                <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider block">Target Context Spectrum</span>
+                                <p class="text-sm font-medium text-slate-800 mt-0.5">29-year-old sales employee earning ₹20,000–25,000/month. Commutes daily on his scooter through high density traffic networks while handling unpredictable water supply.</p>
+                            </div>
+                        </div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-600 flex items-center space-x-1.5"><i data-lucide="git-commit" class="w-3.5 h-3.5"></i><span>Targeted Brainwriting Vectors</span></h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Pollution-free alternate commute lanes</strong> Designated low-exposure lanes to isolate direct emissions impact during high-congestion periods.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Scooter-pooling app</strong> Shared routing logic allowing two-wheel commuters to distribute core operational fuel parameters.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Water supply SMS alerts</strong> Direct notifications conveying real-time allocation updates from municipal nodes.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Guaranteed annual salary increments</strong> Baseline protection models anchoring minimum annual metric indexing to counteract inflationary factors.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors md:col-span-2"><strong class="text-slate-900 block mb-1 text-sm">Free monthly pollution health camps</strong> Local respiratory testing tracks run across highly exposed arterial corridors.</div>
+                        </div>
+                    </div>
+
+                    <div id="content-dheeraj-p" class="persona-content space-y-6 hidden">
+                        <div class="bg-purple-50/40 p-5 rounded-2xl border border-purple-100/60 flex items-start space-x-3">
+                            <i data-lucide="user" class="w-5 h-5 text-purple-500 mt-0.5"></i>
+                            <div>
+                                <span class="text-[10px] font-bold text-purple-600 uppercase tracking-wider block">Target Context Spectrum</span>
+                                <p class="text-sm font-medium text-slate-800 mt-0.5">Sales manager earning ₹1–2 lakhs/month. Faces high electricity expenditure parameters, suboptimal community preservation, and traffic friction.</p>
+                            </div>
+                        </div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-600 flex items-center space-x-1.5"><i data-lucide="git-commit" class="w-3.5 h-3.5"></i><span>Targeted Brainwriting Vectors</span></h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Neighbourhood cleanliness rating app</strong> Crowd-sourced tracking metrics prompting accountability directly to civic contractors.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Smart adaptive traffic signals</strong> Automated signal adaptation driven by localized real-time volume metrics.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Virtual house tour platform</strong> Immersive mapping options preventing physical deployment overheads for housing exploration.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Subsidised apartment water backup tanks</strong> Co-funded high-capacity storage implementations to smooth out disruption vectors.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors md:col-span-2"><strong class="text-slate-900 block mb-1 text-sm">Transparent utility billing dashboard</strong> Advanced interactive data monitors showing live breakdown matrices of domestic flows.</div>
+                        </div>
+                    </div>
+
+                    <div id="content-ramu" class="persona-content space-y-6 hidden">
+                        <div class="bg-rose-50/40 p-5 rounded-2xl border border-rose-100/60 flex items-start space-x-3">
+                            <i data-lucide="user" class="w-5 h-5 text-rose-500 mt-0.5"></i>
+                            <div>
+                                <span class="text-[10px] font-bold text-rose-600 uppercase tracking-wider block">Target Context Spectrum</span>
+                                <p class="text-sm font-medium text-slate-800 mt-0.5">26-year-old resident working on tight allocations of ₹15,000/month. Dependent on public buses; handles water accumulation vulnerabilities and frequent grid dropouts.</p>
+                            </div>
+                        </div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-600 flex items-center space-x-1.5"><i data-lucide="git-commit" class="w-3.5 h-3.5"></i><span>Targeted Brainwriting Vectors</span></h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Monthly free drainage cleaning drives</strong> Preventive clearing networks deployed across downstream vulnerabilities ahead of monsoon lines.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Government micro-savings account</strong> Guarded transaction environments featuring integrated rewards for consistent low-tier balance targets.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Income-based electricity billing slabs</strong> Scaled consumption parameters keeping base grids realistic for low-tier earners.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors"><strong class="text-slate-900 block mb-1 text-sm">Increased bus frequency on key routes</strong> Density-driven frequency adjustments scaling operations directly around shifts.</div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 hover:bg-white transition-colors md:col-span-2"><strong class="text-slate-900 block mb-1 text-sm">Paid youth neighbourhood repair program</strong> Local employment allocations funded to maintain immediate physical neighborhood patches.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-slate-200">
+
+        <section id="evaluation" class="scroll-mt-24 space-y-12">
+            <div class="space-y-3">
+                <div class="flex items-center space-x-2 text-brand-600 font-bold uppercase text-xs tracking-wider">
+                    <i data-lucide="check-square" class="w-4 h-4"></i>
+                    <span>03 . Filtration Matrices</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Feasibility, Desirability, and Viability (FDV) Analysis</h2>
+                <p class="text-slate-600 max-w-4xl text-sm md:text-base">
+                    Concepts filtered via multi-dimensional metrics to consolidate 540 initial variants down to the structural building blocks of our unified civic system.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-brand-500/30 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-2 text-brand-900 font-bold text-sm">
+                            <i data-lucide="home" class="w-4 h-4 text-brand-500"></i>
+                            <span>Housing Security</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 italic leading-relaxed">"How might we help low-income urban residents find and retain affordable housing without sacrificing location or quality?"</p>
+                        <div class="h-[2px] bg-slate-100"></div>
+                        <ul class="text-[11px] space-y-2 text-slate-600">
+                            <li class="flex items-start space-x-1"><span class="text-brand-500">•</span> <span>Verified low-cost rental platform (no broker fees)</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-brand-500">•</span> <span>Government-subsidised co-living spaces</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-brand-500">•</span> <span>Tenant protection dispute helpline</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-brand-500">•</span> <span>Rent freeze schemes (&lt; ₹20k/mo households)</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-brand-500">•</span> <span>Modular units on unused municipal land</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-brand-500">•</span> <span>Deposit loans via micro-finance groups</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-brand-500">•</span> <span>Housing lottery near urban centers</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-brand-500">•</span> <span>Landlord tax incentives for affordable rates</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-brand-500">•</span> <span>Committee for group rental negotiations</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-brand-500">•</span> <span>Mobile app matching landlords & renters</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-amber-500/30 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-2 text-brand-900 font-bold text-sm">
+                            <i data-lucide="trending-up" class="w-4 h-4 text-amber-500"></i>
+                            <span>Predictive Finance</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 italic leading-relaxed">"How might we give residents early visibility into rising costs so they can plan before a financial crisis hits?"</p>
+                        <div class="h-[2px] bg-slate-100"></div>
+                        <ul class="text-[11px] space-y-2 text-slate-600">
+                            <li class="flex items-start space-x-1"><span class="text-amber-500">•</span> <span>Monthly SMS alerts on utility bill estimates</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-amber-500">•</span> <span>Household budget tracker in regional languages</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-amber-500">•</span> <span>Free financial literacy community workshops</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-amber-500">•</span> <span>Early warning alerts for rent modifications</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-amber-500">•</span> <span>Employer-linked salary planning tools</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-amber-500">•</span> <span>Government portal for tariff fluctuations</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-amber-500">•</span> <span>Neighbourhood board for bulk resource buying</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-amber-500">•</span> <span>Monthly financial health checks at municipal offices</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-amber-500">•</span> <span>Community savings circles with auto alerts</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-amber-500">•</span> <span>Prepaid utility cards for structured budgeting</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-emerald-500/30 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-2 text-brand-900 font-bold text-sm">
+                            <i data-lucide="bus" class="w-4 h-4 text-emerald-500"></i>
+                            <span>Transit Ecosystems</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 italic leading-relaxed">"How might we reduce commute time and physical exhaustion for daily wage workers dependent on public transport?"</p>
+                        <div class="h-[2px] bg-slate-100"></div>
+                        <ul class="text-[11px] space-y-2 text-slate-600">
+                            <li class="flex items-start space-x-1"><span class="text-emerald-500">•</span> <span>Increase bus frequency on low-income routes</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-emerald-500">•</span> <span>Real-time bus tracking app for municipal lines</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-emerald-500">•</span> <span>Subsidised passes (&lt; ₹25k/mo households)</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-emerald-500">•</span> <span>Shaded bus stops with seats near colonies</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-emerald-500">•</span> <span>Employer-funded shared shuttle operations</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-emerald-500">•</span> <span>Flexible shift tracking to evade bottleneck congestion</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-emerald-500">•</span> <span>Safe pedestrian walkways to transit hubs</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-emerald-500">•</span> <span>Deploy e-rickshaws for last-mile connectivity</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-emerald-500">•</span> <span>Carpooling networks for daily shifts</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-emerald-500">•</span> <span>Clean rest parameters at major transit junctions</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-purple-500/30 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-2 text-brand-900 font-bold text-sm">
+                            <i data-lucide="droplet" class="w-4 h-4 text-purple-500"></i>
+                            <span>Utility Architecture</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 italic leading-relaxed">"How might we make utility disruptions predictable so residents can minimise their impact on work and daily life?"</p>
+                        <div class="h-[2px] bg-slate-100"></div>
+                        <ul class="text-[11px] space-y-2 text-slate-600">
+                            <li class="flex items-start space-x-1"><span class="text-purple-500">•</span> <span>Advance SMS alerts for planned power/water outages</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-purple-500">•</span> <span>Weekly maintenance schedules on public app</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-purple-500">•</span> <span>Community storage tanks in flood-prone areas</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-purple-500">•</span> <span>Local outage reporting municipal hotline</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-purple-500">•</span> <span>Subsidised inverters/solar lamps (&lt; ₹20k/mo)</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-purple-500">•</span> <span>Shared board neighborhood outage trackers</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-purple-500">•</span> <span>Train youth volunteers for electrical/plumbing</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-purple-500">•</span> <span>Prepaid water storage models for irregular lines</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-purple-500">•</span> <span>NGO distribution of emergency utility kits</span></li>
+                            <li class="flex items-start space-x-1"><span class="text-purple-500">•</span> <span>Real-time utility dashboard on basic devices</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-slate-200">
+
+        <section id="prototype" class="scroll-mt-24 space-y-8">
+            <div class="space-y-3">
+                <div class="flex items-center space-x-2 text-brand-600 font-bold uppercase text-xs tracking-wider">
+                    <i data-lucide="layout" class="w-4 h-4"></i>
+                    <span>04 . System Architecture Prototype</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">The UrbanLives Unified Engine</h2>
+                <p class="text-slate-600 max-w-3xl text-sm md:text-base">
+                    An integrated framework linking baseline variables to eliminate unpredictability for low-income residents.
+                </p>
+            </div>
+
+            <div class="bg-slate-950 rounded-3xl p-6 md:p-8 text-white border border-slate-800 shadow-2xl space-y-8 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-transparent pointer-events-none"></div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-6 gap-4 relative z-10">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-2.5 bg-brand-500 rounded-xl text-white shadow-md shadow-brand-500/10">
+                            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold tracking-tight">UrbanLives Telemetry Monitor</h3>
+                            <p class="text-xs text-slate-500">Live Metric Dashboard Synchronization</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-xs">
+                        <span class="bg-red-500/10 text-red-400 px-3 py-1 rounded-full border border-red-500/20 flex items-center space-x-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                            <span>3 Outage Signals</span>
+                        </span>
+                        <span class="bg-amber-500/10 text-amber-400 px-3 py-1 rounded-full border border-amber-500/20">
+                            Transit Latency: +34m
+                        </span>
+                        <span class="bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20">
+                            Buffer: ₹1,240
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 relative z-10">
+                    
+                    <div class="bg-slate-900/90 backdrop-blur-sm p-6 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs uppercase font-bold text-slate-500 tracking-wider">Stability Index Score</span>
+                            <div class="flex items-baseline space-x-2 mt-2">
+                                <span class="text-6xl font-black text-brand-500 tracking-tight">42</span>
+                                <span class="text-slate-600 text-lg">/ 100</span>
+                            </div>
+                        </div>
+                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-brand-500 h-full w-[42%] transition-all duration-1000 ease-out"></div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Composite tracking indices signal <strong class="text-amber-400">Moderate Risk</strong>. Strategic financial adjustments needed.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-900/90 backdrop-blur-sm p-6 rounded-2xl border border-slate-800 lg:col-span-2 space-y-4">
+                        <span class="text-xs uppercase font-bold text-slate-500 tracking-wider block">Dimension Security Index</span>
+                        
+                        <div class="space-y-3.5">
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-slate-300 font-medium">Housing Stability</span>
+                                    <span class="text-amber-400 font-semibold">48% (Needs Attention)</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-amber-500 h-full w-[48%]"></div>
+                                </div>
+                            </div>
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-slate-300 font-medium">Financial Buffer</span>
+                                    <span class="text-red-400 font-semibold">22% (Critical)</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-red-500 h-full w-[22%]"></div>
+                                </div>
+                            </div>
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-slate-300 font-medium">Commute Reliability</span>
+                                    <span class="text-blue-400 font-semibold">55% (Moderate)</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-blue-50 h-full w-[55%]"></div>
+                                </div>
+                            </div>
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-slate-300 font-medium">Utility Stability</span>
+                                    <span class="text-emerald-400 font-semibold">61% (Fair)</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-emerald-500 h-full w-[61%]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl hover:border-slate-700 transition-all duration-300 space-y-2">
+                        <div class="flex items-center space-x-2 text-brand-400 font-bold text-sm">
+                            <i data-lucide="pie-chart" class="w-4 h-4"></i>
+                            <span>Cost Dashboard</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Granular monitoring of localized rent patterns, baseline travel pass costs, and operational utility overheads.</p>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl hover:border-slate-700 transition-all duration-300 space-y-2">
+                        <div class="flex items-center space-x-2 text-emerald-400 font-bold text-sm">
+                            <i data-lucide="gauge" class="w-4 h-4"></i>
+                            <span>CommuteSmart Integration</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Live spatial latency metrics mapping municipal bus delays and providing integrated validation cards for shift supervisors.</p>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl hover:border-slate-700 transition-all duration-300 space-y-2">
+                        <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm">
+                            <i data-lucide="wifi-off" class="w-4 h-4"></i>
+                            <span>Outage Network</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Crowdsourced tracking engines aggregating grid down-times and providing proactive disruption alerts to targeted sectors.</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-800 pt-8 space-y-4 relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-200">Resource Hub — Structural Pass Matching</h4>
+                            <p class="text-xs text-slate-500">Search government frameworks, travel support, and legal protection schemes.</p>
+                        </div>
+                        <div class="relative w-full md:w-72">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                                <i data-lucide="search" class="w-4 h-4"></i>
+                            </span>
+                            <input type="text" id="hub-search" oninput="filterHub()" placeholder="Search 'bmtc', 'housing', 'pm'..." class="w-full pl-9 pr-4 py-2 bg-slate-900 text-xs rounded-xl border border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-slate-200 placeholder:text-slate-600">
+                        </div>
+                    </div>
+
+                    <div id="hub-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                        <div class="hub-card p-4 bg-slate-900 border border-slate-800/80 rounded-xl hover:bg-slate-900 transition-all duration-200 flex flex-col justify-between space-y-2" data-tags="pm pamy housing central govt">
+                            <span class="text-[9px] font-bold text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded-md uppercase tracking-wider w-fit">Housing • Central Govt</span>
+                            <h5 class="font-bold text-slate-200 text-sm">Pradhan Mantri Awas Yojana (Urban)</h5>
+                        </div>
+                        <div class="hub-card p-4 bg-slate-900 border border-slate-800/80 rounded-xl hover:bg-slate-900 transition-all duration-200 flex flex-col justify-between space-y-2" data-tags="bmtc transport pass karnataka concession">
+                            <span class="text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md uppercase tracking-wider w-fit">Transport • Karnataka</span>
+                            <h5 class="font-bold text-slate-200 text-sm">BMTC Monthly Pass — Concession Rates</h5>
+                        </div>
+                        <div class="hub-card p-4 bg-slate-900 border border-slate-800/80 rounded-xl hover:bg-slate-900 transition-all duration-200 flex flex-col justify-between space-y-2" data-tags="nalsa legal aid central justice">
+                            <span class="text-[9px] font-bold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-md uppercase tracking-wider w-fit">Legal Aid • Central</span>
+                            <h5 class="font-bold text-slate-200 text-sm">NALSA Free Legal Aid Portal</h5>
+                        </div>
+                        <div class="hub-card p-4 bg-slate-900 border border-slate-800/80 rounded-xl hover:bg-slate-900 transition-all duration-200 flex flex-col justify-between space-y-2" data-tags="pm svanidhi micro credit finance central govt loans">
+                            <span class="text-[9px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md uppercase tracking-wider w-fit">Finance • Central Govt</span>
+                            <h5 class="font-bold text-slate-200 text-sm">PM SVANidhi — Micro Credit Scheme</h5>
+                        </div>
+                        <div class="hub-card p-4 bg-slate-900 border border-slate-800/80 rounded-xl hover:bg-slate-900 transition-all duration-200 flex flex-col justify-between space-y-2" data-tags="bbmp rental grievance housing civic bangalore">
+                            <span class="text-[9px] font-bold text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded-md uppercase tracking-wider w-fit">Housing • Bangalore</span>
+                            <h5 class="font-bold text-slate-200 text-sm">BBMP Rental Grievance Portal</h5>
+                        </div>
+                        <div class="hub-card p-4 bg-slate-900 border border-slate-800/80 rounded-xl hover:bg-slate-900 transition-all duration-200 flex flex-col justify-between space-y-2" data-tags="namma metro commuter card transport bmrcl transit">
+                            <span class="text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md uppercase tracking-wider w-fit">Transport • BMRCL</span>
+                            <h5 class="font-bold text-slate-200 text-sm">Namma Metro Commuter Card</h5>
+                        </div>
+                        <div class="hub-card p-4 bg-slate-900 border border-slate-800/80 rounded-xl hover:bg-slate-900 transition-all duration-200 flex flex-col justify-between space-y-2" data-tags="jan dhan yojana zero balance finance banking savings">
+                            <span class="text-[9px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md uppercase tracking-wider w-fit">Finance • Banking</span>
+                            <h5 class="font-bold text-slate-200 text-sm">Jan Dhan Yojana — Zero Balance Account</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-slate-200">
+
+        <section id="townhall" class="scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="space-y-6 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2 text-brand-600 font-bold uppercase text-xs tracking-wider">
+                            <i data-lucide="users" class="w-4 h-4"></i>
+                            <span>05 . Grassroots Engagement</span>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">Town Hall Planning Model</h2>
+                        <p class="text-xs text-slate-400 uppercase font-bold tracking-wider">Participatory Infrastructure Planning Strategy</p>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Instead of managing structural development via desk surveys, communities integrate directly into the iteration process through visualization models and public accountability channels.
+                    </p>
+
+                    <div class="space-y-3.5 text-xs">
+                        <div class="p-4 bg-white border border-slate-200 rounded-xl flex items-start space-x-3 hover:border-slate-300 transition-colors">
+                            <div class="p-2 bg-slate-100 rounded-lg text-slate-800 font-bold">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Ground-Level Visibility</h4>
+                                <p class="text-slate-500 mt-0.5 leading-relaxed">Captures granular spatial patterns including localized flooding vectors or unmapped trading nodes.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-white border border-slate-200 rounded-xl flex items-start space-x-3 hover:border-slate-300 transition-colors">
+                            <div class="p-2 bg-slate-100 rounded-lg text-slate-800 font-bold">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Adaptive Watchdog Mechanisms</h4>
+                                <p class="text-slate-500 mt-0.5 leading-relaxed">Direct visibility allows immediate citizen reporting, mitigating structural budget misallocations.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-white border border-slate-200 rounded-xl flex items-start space-x-3 hover:border-slate-300 transition-colors">
+                            <div class="p-2 bg-slate-100 rounded-lg text-slate-800 font-bold">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Long-Term Systems Preservation</h4>
+                                <p class="text-slate-500 mt-0.5 leading-relaxed">Civic architecture designed alongside target residents results in higher preservation indices.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-100/60 rounded-2xl border border-slate-200/80 p-5 space-y-3 mt-4">
+                    <span class="text-[10px] font-bold uppercase text-slate-400 tracking-wider block">Proven Global Alignments</span>
+                    <div class="overflow-x-auto text-xs">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-slate-400">
+                                    <th class="pb-2 font-bold uppercase tracking-wider text-[10px]">Geography</th>
+                                    <th class="pb-2 font-bold uppercase tracking-wider text-[10px]">Strategic Impact</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                <tr>
+                                    <td class="py-2.5 font-bold text-slate-900">Medellin, Colombia</td>
+                                    <td class="py-2.5 text-slate-500">Slum transit integrations reduced crime parameters by 80%.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 font-bold text-slate-900">Kerala, India</td>
+                                    <td class="py-2.5 text-slate-500">Gram Sabha models scaled base-level sanitation and water assets.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 font-bold text-slate-900">Porto Alegre, Brazil</td>
+                                    <td class="py-2.5 text-slate-500">Participatory budgeting directed funds to measurably lower urban poverty.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6 bg-slate-900 text-slate-100 p-8 md:p-10 rounded-3xl justify-between flex flex-col border border-slate-800 shadow-xl relative overflow-hidden group">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-500/5 rounded-full pointer-events-none"></div>
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2 text-brand-400 font-bold uppercase text-xs tracking-wider">
+                            <i data-lucide="cpu" class="w-4 h-4"></i>
+                            <span>06 . Operational Testing Framework</span>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Wizard of Oz Execution</h2>
+                        <p class="text-xs text-brand-300 uppercase font-bold tracking-wider">Infrastructure Operations & Job Generation</p>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        To validate systems prior to major programmatic automation, our framework links operational tasks to local execution tracks.
+                    </p>
+
+                    <div class="bg-slate-950/80 p-5 rounded-xl border border-slate-800/80 space-y-3 mt-4">
+                        <h4 class="text-xs font-bold uppercase text-emerald-400 tracking-wider flex items-center space-x-1"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i><span>The Local Economic Multiplier</span></h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Compounding payroll within local communities returns capital directly to foundational local business ecosystems.
+                        </p>
+                        <div class="text-[11px] bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 p-3 rounded-xl font-medium">
+                            Structural validation matrices indicate a local economic multiplier velocity as high as 2.5x.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-800 text-[11px]">
+                    <div class="space-y-1">
+                        <span class="block font-bold text-slate-200">Formalization Loops</span>
+                        <p class="text-slate-500 leading-relaxed">Transitions informal labor into verified pay tracking, establishing financial records for credit lines.</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="block font-bold text-slate-200">Skill Accreditation</span>
+                        <p class="text-slate-500 leading-relaxed">Builds baseline experience logs, paving long-term paths into formal job structures.</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="block font-bold text-slate-200">Social Cohesion</span>
+                        <p class="text-slate-500 leading-relaxed">Provides clear occupational avenues that systematically improve community safety indicators.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-slate-200">
+
+        <section id="reflection" class="scroll-mt-24 space-y-8">
+            <div class="space-y-2">
+                <div class="flex items-center space-x-2 text-brand-600 font-bold uppercase text-xs tracking-wider">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    <span>07 . Strategic Synthesis</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Reflections & Structural Learnings</h2>
+                <p class="text-slate-500 text-sm md:text-base">Systemic insights gathered across macro urban planning frameworks and socioeconomic dynamics.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-slate-600 leading-relaxed">
+                <div class="space-y-4 bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-slate-900 flex items-center space-x-2 text-base">
+                        <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+                        <span>Expanding Infrastructure Paradigms</span>
+                    </h3>
+                    <p class="text-xs md:text-sm leading-relaxed text-slate-600">
+                        Our early models associated infrastructure explicitly with physical assets like transit paths, bridges, and electric power grids. Through this design thinking iteration, we recognized that infrastructure intrinsically encompasses public health access, baseline school networks, sanitation pathways, and digital parameters.
+                    </p>
+                    <p class="text-xs md:text-sm leading-relaxed text-slate-600">
+                        These dynamic frameworks act as foundations for broader regional trade parameters, corporate alignment, and investment attraction. Streamlined communication networks and structured transit eliminate processing latency, helping localized industries execute efficiently.
+                    </p>
+                </div>
+
+                <div class="space-y-6 bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-slate-900 flex items-center space-x-2 text-base">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            <span>Systemic Equality & Longevity</span>
+                        </h3>
+                        <p class="text-xs md:text-sm leading-relaxed text-slate-600">
+                            Asymmetrical asset distribution creates institutional barriers, economic segmentation, and regional vulnerability. Inclusionary, well-distributed physical resources smooth out localized differences and support improved security parameters across society.
+                        </p>
+                    </div>
+                    <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl text-xs text-slate-500 italic leading-relaxed">
+                        "Development strategies must look beyond immediate targets to secure generational balance, ecological stability, and systemic climate resilience."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gradient-to-r from-brand-900 to-slate-950 rounded-3xl p-8 md:p-12 text-white text-center space-y-6 border border-brand-800 shadow-xl transform hover:scale-[1.01] transition-transform duration-300">
+            <div class="max-w-2xl mx-auto space-y-3">
+                <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Access the Live Framework</h2>
+                <p class="text-slate-300 text-sm font-light">
+                    Explore active data dashboards, localized tracking telemetry, and verified resource listings via our live production environment.
+                </p>
+            </div>
+            <div class="pt-2">
+                <a href="https://sdl-l7sz.vercel.app/" target="_blank" class="inline-flex items-center space-x-2 bg-white text-brand-900 px-6 py-3 rounded-xl font-bold text-xs md:text-sm hover:bg-brand-50 transition-all duration-200 shadow-lg group">
+                    <span>Visit Official Platform Portal</span>
+                    <i data-lucide="external-link" class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                </a>
+            </div>
+            <div class="text-[10px] text-slate-500 font-mono">
+                Production URL Address: https://sdl-l7sz.vercel.app/
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-400 py-16 px-4 border-t border-slate-900 text-center text-xs">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <p class="text-slate-200 font-bold text-sm tracking-wide uppercase">UrbanLives · SDI Project · Design Thinking 2026</p>
+            <p class="max-w-2xl mx-auto text-slate-500 leading-relaxed">
+                Engineered & Evaluated by: P Dheeraj | Srishanth | Vamshi | Harshith Varma | Vinay Reddy | Akshith | Snehansh
+            </p>
+            <div class="pt-6 border-t border-slate-900 text-slate-700 font-mono text-[10px]">
+                &copy; 2026 UrbanLives Hub Ecosystem. Structured under participatory municipal models.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Persona Tab Switching Logic
+        function switchPersona(personaId) {
+            // Hide all tab contents
+            document.querySelectorAll('.persona-content').forEach(element => {
+                element.classList.add('hidden');
+                element.classList.remove('animate-tab-change');
+            });
+            // Reset selection styles
+            document.querySelectorAll('.persona-tab').forEach(element => {
+                element.classList.remove('active', 'bg-slate-900', 'text-white');
+                element.classList.add('text-slate-600', 'hover:bg-slate-200/70');
+            });
+
+            // Target Active Element Elements
+            const activeContent = document.getElementById('content-' + personaId);
+            activeContent.classList.remove('hidden');
+            activeContent.classList.add('animate-tab-change');
+            
+            const activeTab = document.getElementById('tab-' + personaId);
+            activeTab.classList.add('active');
+        }
+
+        // Live Resource Hub Search Filter Logic
+        function filterHub() {
+            const query = document.getElementById('hub-search').value.toLowerCase().trim();
+            document.querySelectorAll('.hub-card').forEach(card => {
+                const tags = card.getAttribute('data-tags').toLowerCase();
+                const text = card.innerText.toLowerCase();
+                if (tags.includes(query) || text.includes(query)) {
+                    card.classList.remove('hidden');
+                    card.classList.add('animate-tab-change');
+                } else {
+                    card.classList.add('hidden');
+                    card.classList.remove('animate-tab-change');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
